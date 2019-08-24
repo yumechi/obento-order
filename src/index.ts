@@ -1,6 +1,7 @@
 import { DotEnvDomain } from "./dotenv_test";
 
 import commandLineArgs from "command-line-args";
+import { puppeteerSettings } from "./settings";
 
 function getArgs(): { [key: string]: boolean; } {
   const optionDefinitions = [
@@ -20,13 +21,14 @@ function getArgs(): { [key: string]: boolean; } {
 
 function callDotenvTest(): void {
   console.log("dotenv called");
-  const d = new DotEnvDomain();
-  d.readDotenvTest();
+  (new DotEnvDomain()).readDotenvTest();
 }
 
 function callPuppeteerTest(): void {
   // mock
   console.log("Puppeteer called");
+  const settings = puppeteerSettings();
+  console.log(settings);
 }
 
 function main(): void {
