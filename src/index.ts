@@ -1,7 +1,8 @@
-import { DotEnvDomain } from "./dotenv_test";
+import { DotEnvDomain } from "./dotenvDomain";
 
 import commandLineArgs from "command-line-args";
 import { puppeteerSettings } from "./settings";
+import { PuppeteerDomain } from "./puppeteerDomain";
 
 function getArgs(): { [key: string]: boolean; } {
   const optionDefinitions = [
@@ -13,6 +14,11 @@ function getArgs(): { [key: string]: boolean; } {
     {
       name: "puppeteer",
       alias: "p",
+      type: Boolean
+    },
+    {
+      name: "order",
+      alias: "o",
       type: Boolean
     },
   ];
@@ -28,15 +34,27 @@ function callPuppeteerTest(): void {
   // mock
   console.log("Puppeteer called");
   const settings = puppeteerSettings();
-  console.log(settings);
+  (new PuppeteerDomain(settings).testScreanShot());
 }
+
+function callOrder(): void {
+  // mock
+  console.log("Order called");
+  const settings = puppeteerSettings();
+  (new PuppeteerDomain(settings).orderBento());
+}
+
 
 function main(): void {
   const options: {[key: string]: boolean} = getArgs();
   if(options["dotenv"]) {
     callDotenvTest();
-  } if(options["puppeteer"]) {
+  }
+  if(options["puppeteer"]) {
     callPuppeteerTest();
+  }
+  if(options["order"]) {
+    callOrder();
   }
   console.log(options);
 }

@@ -19,6 +19,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
   integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
 
+"@types/puppeteer@^1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-1.19.1.tgz#942ca62288953a0f5fbbc25c103b5f2ba28b60ab"
+  integrity sha512-ReWZvoEfMiJIA3AG+eM+nCx5GKrU2ANVYY5TC0nbpeiTCtnJbcqnmBbR8TkXMBTvLBYcuTOAELbTcuX73siDNQ==
+  dependencies:
+    "@types/node" "*"
+
 agent-base@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-4.3.0.tgz#8165f01c436009bccad0b1d122f05ed770efc6ee"
