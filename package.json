@@ -2,7 +2,7 @@
   "name": "obento-net",
   "version": "0.0.1",
   "description": "お弁当注文自動化プロジェクト",
-  "main": "index.js",
+  "main": "dest/index.js",
   "repository": "git@github.com:yumechi/obento-net.git",
   "author": "yumechi <yumechi0525@gmail.com>",
   "license": "MIT",
@@ -12,6 +12,7 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
-    "@types/node": "^12.7.2"
+    "@types/node": "^12.7.2",
+    "ts-node": "^8.3.0"
   }
 }
