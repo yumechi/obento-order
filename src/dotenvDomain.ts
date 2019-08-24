@@ -17,7 +17,7 @@ export class DotEnvDomain {
     /**
      * dotenvを読んでみるテスト
      */
-    const testKeys: string[] = ['NAME', 'AIKOTOBA'];
+    const testKeys: string[] = ['NAME', 'GOBI', 'AISATSU'];
     console.log(this.readAllDotenv(testKeys));
   }
 
