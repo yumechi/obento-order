@@ -1,6 +1,8 @@
-const commandLineArgs = require("command-line-args");
+import { DotEnvDomain } from "./dotenv_test";
 
-function getArgs(): { [key: string]: boolean} {
+import commandLineArgs from "command-line-args";
+
+function getArgs(): { [key: string]: boolean; } {
   const optionDefinitions = [
     {
       name: "dotenv",
@@ -17,8 +19,9 @@ function getArgs(): { [key: string]: boolean} {
 }
 
 function callDotenvTest(): void {
-  // mock
   console.log("dotenv called");
+  const d = new DotEnvDomain();
+  d.readDotenvTest();
 }
 
 function callPuppeteerTest(): void {
