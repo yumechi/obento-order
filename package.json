@@ -1,0 +1,9 @@
+{
+  "name": "obento-net",
+  "version": "0.0.1",
+  "description": "お弁当注文自動化プロジェクト",
+  "main": "index.js",
+  "repository": "git@github.com:yumechi/obento-net.git",
+  "author": "yumechi <yumechi0525@gmail.com>",
+  "license": "MIT"
+}
