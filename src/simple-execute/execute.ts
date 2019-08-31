@@ -16,11 +16,6 @@ function getArgs(): { [key: string]: boolean; } {
       alias: "p",
       type: Boolean
     },
-    {
-      name: "order",
-      alias: "o",
-      type: Boolean
-    },
   ];
   return commandLineArgs(optionDefinitions);
 }
@@ -37,14 +32,6 @@ function callPuppeteerTest(): void {
   (new PuppeteerDomain(settings)).testScreanShot();
 }
 
-function callOrder(): void {
-  // mock
-  console.log("Order called");
-  const settings = puppeteerSettings();
-  (new PuppeteerDomain(settings).orderBento());
-}
-
-
 function main(): void {
   const options: {[key: string]: boolean} = getArgs();
   if(options["dotenv"]) {
@@ -52,9 +39,6 @@ function main(): void {
   }
   if(options["puppeteer"]) {
     callPuppeteerTest();
-  }
-  if(options["order"]) {
-    callOrder();
   }
   console.log(options);
 }
