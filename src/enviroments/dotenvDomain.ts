@@ -6,7 +6,7 @@ import { resolve } from "path"
  */
 export class DotEnvDomain {
   data: any;
-  constructor(envPath="../.env") {
+  constructor(envPath="../../.env") {
     /**
      * config を持つだけのコンストラクタ
      */
