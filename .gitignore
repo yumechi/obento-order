@@ -62,3 +62,6 @@ typings/
 
 # ts output
 dist/
+
+# debug capture
+screenshot*.png
