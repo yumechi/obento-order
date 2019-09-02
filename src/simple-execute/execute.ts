@@ -1,7 +1,7 @@
-import { DotEnvDomain } from "../enviroments/dotenvDomain";
+import { DotEnvTest } from "../environments/dotenv-domain";
 
 import commandLineArgs from "command-line-args";
-import { puppeteerSettings } from "../enviroments/settings";
+import { puppeteerSettings } from "../environments/settings";
 import { PuppeteerDomain } from "../scriping/puppeteerDomain";
 
 function getArgs(): { [key: string]: boolean; } {
@@ -22,7 +22,7 @@ function getArgs(): { [key: string]: boolean; } {
 
 function callDotenvTest(): void {
   console.log("dotenv called");
-  (new DotEnvDomain()).readDotenvTest();
+  (new DotEnvTest()).readDotenvTest();
 }
 
 function callPuppeteerTest(): void {

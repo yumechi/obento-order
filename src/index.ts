@@ -1,4 +1,4 @@
-import { puppeteerSettings } from "./enviroments/settings";
+import { puppeteerSettings } from "./environments/settings";
 import { PuppeteerDomain } from "./scriping/puppeteerDomain";
 
 exports.handler = (event: any, context: any, callback: Function) =>  {
