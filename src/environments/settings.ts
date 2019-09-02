@@ -21,14 +21,18 @@ export function puppeteerSettings(): { [key: string]: string | number } {
  * envからデータを引き抜いてsettingsに足して返すやつ
  * @param settings デフォルトのセッティング値
  * @param envKeys envから足したいセッティングのkey
+ * @param override 既存設定を書き換えるフラグ
  */
 function addEnvSettings(
   settings: { [key: string]: string | number },
-  envKeys: string[]
+  envKeys: string[],
+  override: boolean=true,
 ): { [key: string]: string | number } {
   const dotenvSettings = new ObentoOrderDotenv().readAllDotenv(envKeys);
   for (let key in dotenvSettings) {
-    settings[key] = dotenvSettings[key];
+    if(override || !settings[key]) {
+      settings[key] = dotenvSettings[key];
+    }
   }
   return settings;
 }
