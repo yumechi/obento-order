@@ -5,17 +5,15 @@ import { DotEnvDomain } from "./dotenvDomain";
  */
 export function puppeteerSettings(): { [key: string]: string | number } {
   // なんか結果的にデフォルトでセットしておきたい値がなくなってしまった
-  var defaultSettings: { [key: string]: string | number } = {};
+  var defaultSettings: { [key: string]: string | number } = {
+    "login_url": "https://www.obentonet.jp/login.html",
+  };
 
   // add env settings
   const readEnvArray: string[] = [
-    "LOGIN_PAGE",
-    "DOM_KOUTEI",
-    "KOUTEI",
-    "DOM_ANATANO_NAME",
-    "ANATANO_NAME",
-    "DOM_AIKOTOBA",
-    "AIKOTOBA"
+    "CORP_ID",
+    "ACCOUNT",
+    "PASS"
   ];
   return addEnvSettings(defaultSettings, readEnvArray);
 }
