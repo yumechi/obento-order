@@ -2,7 +2,8 @@ import { DotEnvTest } from "../environments/dotenv-domain";
 
 import commandLineArgs from "command-line-args";
 import { puppeteerSettings } from "../environments/settings";
-import { PuppeteerDomain } from "../scriping/puppeteerDomain";
+import { PuppeteerTest } from "../scriping/puppeteer-domain";
+import { DevelopmentTools } from "../scriping/developent-tools";
 
 function getArgs(): { [key: string]: boolean; } {
   const optionDefinitions = [
@@ -29,7 +30,8 @@ function callPuppeteerTest(): void {
   // mock
   console.log("Puppeteer called");
   const settings = puppeteerSettings();
-  (new PuppeteerDomain(settings)).testScreanShot();
+  const WithDebugPuppeterTest = DevelopmentTools(PuppeteerTest);
+  (new WithDebugPuppeterTest(settings)).testScreanShot();
 }
 
 function main(): void {
