@@ -5,7 +5,7 @@ import { puppeteerSettings } from "../environments/settings";
 import { PuppeteerTest } from "../scriping/puppeteer-domain";
 import { DevelopmentTools } from "../scriping/developent-tools";
 
-function getArgs(): { [key: string]: boolean; } {
+function getArgs(): { [key: string]: boolean } {
   const optionDefinitions = [
     {
       name: "dotenv",
@@ -16,14 +16,14 @@ function getArgs(): { [key: string]: boolean; } {
       name: "puppeteer",
       alias: "p",
       type: Boolean
-    },
+    }
   ];
   return commandLineArgs(optionDefinitions);
 }
 
 function callDotenvTest(): void {
   console.log("dotenv called");
-  (new DotEnvTest()).readDotenvTest();
+  new DotEnvTest().readDotenvTest();
 }
 
 function callPuppeteerTest(): void {
@@ -31,15 +31,15 @@ function callPuppeteerTest(): void {
   console.log("Puppeteer called");
   const settings = puppeteerSettings();
   const WithDebugPuppeterTest = DevelopmentTools(PuppeteerTest);
-  (new WithDebugPuppeterTest(settings)).testScreanShot();
+  new WithDebugPuppeterTest(settings).testScreanShot();
 }
 
 function main(): void {
-  const options: {[key: string]: boolean} = getArgs();
-  if(options["dotenv"]) {
+  const options: { [key: string]: boolean } = getArgs();
+  if (options["dotenv"]) {
     callDotenvTest();
   }
-  if(options["puppeteer"]) {
+  if (options["puppeteer"]) {
     callPuppeteerTest();
   }
   console.log(options);

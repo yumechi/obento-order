@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import puppeteer from "puppeteer";
 import { PuppeteerDomainBase } from "./puppeteer-domain";
 
@@ -22,7 +23,7 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
    * お弁当を頼むメソッド
    * 設定は事前にコンストラクタに渡しておく
    */
-  orderBento() {
+  orderBento(): void {
     this.__orderBento().catch(e => {
       if (e instanceof ObentOrderError) {
         e.page.screenshot({ path: "error.png" });
@@ -37,7 +38,7 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
    * FIXME: Promissで書くのが正解な気がする
    */
   async __orderBento() {
-    const startUrl = this.settings["login_url"];
+    const startUrl = this.settings["loginUrl"];
     const corpId = this.settings["CORP_ID"];
     const account = this.settings["ACCOUNT"];
     const pass = this.settings["PASS"];
@@ -56,13 +57,13 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
 
         // imageのclickがsubmit兼ねてるタイプ
         // なおここにawaitをつけると一生帰ってこないのでつけてはいけない
-        let pagePromiss = page.waitForNavigation({
+        const pagePromiss = page.waitForNavigation({
           timeout: 60000,
           waitUntil: "domcontentloaded"
         });
         await page.click('input[type="image"]');
         await pagePromiss;
-        this.debug_print(page, "screenshot1.png");
+        this.debugPrint(page, "screenshot1.png");
       } catch (e) {
         await browser.close();
         throw new ObentOrderError("ログイン失敗", page);
@@ -72,14 +73,14 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
     // 会員トップページ
     {
       try {
-        let pagePromiss = page.waitForNavigation({
+        const pagePromiss = page.waitForNavigation({
           timeout: 60000,
           waitUntil: "domcontentloaded"
         });
         await page.click(".order");
         await pagePromiss;
 
-        this.debug_print(page, "screenshot2.png");
+        this.debugPrint(page, "screenshot2.png");
       } catch (e) {
         await browser.close();
         throw new ObentOrderError("注文ページ遷移失敗", page);
@@ -89,19 +90,19 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
     // 注文ページ
     {
       try {
-        let items = await page.$$(".cartButtonArea");
-        let pickup = await items[0].$("input");
+        const items = await page.$$(".cartButtonArea");
+        const pickup = await items[0].$("input");
         if (!pickup) {
           await browser.close();
           throw new ObentOrderError("注文ページでセレクターの取得に失敗", page);
         }
-        let pagePromiss = page.waitForNavigation({
+        const pagePromiss = page.waitForNavigation({
           timeout: 60000,
           waitUntil: "domcontentloaded"
         });
         await pickup.click();
         await pagePromiss;
-        this.debug_print(page, "screenshot3.png");
+        this.debugPrint(page, "screenshot3.png");
       } catch (e) {
         await browser.close();
         throw new ObentOrderError("確認ページ遷移失敗", page);
@@ -111,13 +112,13 @@ export class ObentOrderPuppeteerDomain extends PuppeteerDomainBase {
     // 確認ページ
     {
       try {
-        let pagePromiss = page.waitForNavigation({
+        const pagePromiss = page.waitForNavigation({
           timeout: 60000,
           waitUntil: "domcontentloaded"
         });
         await page.click("#confirm-modal");
         await pagePromiss;
-        this.debug_print(page, "screenshot4.png");
+        this.debugPrint(page, "screenshot4.png");
       } catch (e) {
         await browser.close();
         throw new ObentOrderError("確定失敗", page);
