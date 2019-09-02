@@ -8,6 +8,13 @@ export class PuppeteerDomainBase {
   constructor(settings: { [key: string]: any }) {
     this.settings = settings;
   }
+
+  async debug_print(page: puppeteer.Page, path: string) {
+    /**
+     * Mixinに上書きされるだけのモック
+     */
+    // console.log("Debug nothing...");
+  }
 }
 
 export class PuppeteerTest extends PuppeteerDomainBase {
@@ -20,7 +27,7 @@ export class PuppeteerTest extends PuppeteerDomainBase {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto("https://www.google.com");
-      await page.screenshot({ path: "screenshot.png" });
+      await this.debug_print(page, "screenshot.png");
       await browser.close();
     })();
   }
